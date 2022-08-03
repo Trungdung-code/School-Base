@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CategoryGroup;
 use App\Models\MyClass;
 use App\Models\UserClass;
+use Illuminate\Http\Request;
+use Auth;
+use App\Http\Requests;
 
 class ClassController extends Controller
 {

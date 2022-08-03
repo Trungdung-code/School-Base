@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\QuestionBlock;
 
 class CategoriesController extends Controller
 {
-    public function store(Request $request, CategoryRepository $categoryRepository)
+    public function store( Request $request, CategoryRepository $categoryRepository)
     {
         $name = $request->get('name');
         $groupId = $request->get('group_id');
@@ -26,14 +25,7 @@ class CategoriesController extends Controller
                 $courseRepository->createByName($course, $category->id);
             }
         }
-        return redirect()->back();
-    }
 
-    public function editCategoryName(Request $request, CategoryRepository $categoryRepository)
-    {
-        $category = $categoryRepository->category($request->id);
-        $category->name = $request->name;
-        $category->save();
         return redirect()->back();
     }
 
@@ -43,9 +35,11 @@ class CategoriesController extends Controller
         $groupId = $request->get('group_id');
         $coursesName = $request->get('courses');
         $coursesId = $request->get('coursesId');
+
         $category = $categoryRepository->category($id);
         $category->name = $name;
         $category->save();
+
         $courseRepository = new CourseRepository();
         //delete removed courses
         $courses = $category->courses;

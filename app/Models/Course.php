@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Elasticquent\ElasticquentTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -45,20 +45,20 @@ class Course extends Model
      * check
      * @return bool
      */
-    public function hasClass()
-    {
-        $curri = $this->curriculum;
-        if ($curri == null)
-            return false;
-        if (count($curri->incomingClasses) > 0) {
-            foreach ($curri->incomingClasses as $myClass) {
-                if (Auth::user()->isClassAvailable($myClass->id)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    // public function hasClass()
+    // {
+    //     $curri = $this->curriculum;
+    //     if ($curri == null)
+    //         return false;
+    //     if (count($curri->incomingClasses) > 0) {
+    //         foreach ($curri->incomingClasses as $myClass) {
+    //             if (Auth::user()->isClassAvailable($myClass->id)) {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 
     public function sections()
     {

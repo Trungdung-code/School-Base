@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Course;
+use App\Models\CategoryGroup;
 use App\Models\Curriculum;
 use App\Models\MyClass;
 use App\Models\UserAnswer;
@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Storage;
 
 class DashboardController extends Controller
 {
@@ -37,7 +36,7 @@ class DashboardController extends Controller
         $answer->review = $request->get('review');
         $answer->review_status = UserQuestion::REVIEWED;
         $answer->save();
-        return redirect('/admin/classes/' . $classId);
+        return redirect('/admin/classes/'.$classId);
     }
 
 
@@ -53,7 +52,7 @@ class DashboardController extends Controller
         $answer->review = $request->get('review');
         $answer->review_status = UserQuestion::REVIEWED;
         $answer->save();
-        return redirect('/admin/classes/' . $classId);
+        return redirect('/admin/classes/'.$classId);
     }
 
     public function pendingwork($classId)
@@ -73,9 +72,9 @@ class DashboardController extends Controller
     {
         $groups = $groupRepository->groups();
         $course = $groups[0]->categories[0]->courses[0];
-        /*        $curricula = $curriculumRepository->availableCurriculum($course->id);*/
+        $curricula = $curriculumRepository->availableCurriculum($course->id);
         #dd($curricula);
-        return view('teacher.courseintro', compact('groups', 'course'));
+        return view('teacher.courseintro', compact('groups', 'course', 'curricula'));
     }
 
     public function curricula(CurriculumRepository $curriculumRepository)
@@ -93,28 +92,6 @@ class DashboardController extends Controller
     {
         $curricula = $curriculumRepository->curricula();
         return view('teacher.classes', compact('curricula'));
-    }
-
-    public function uploadImage(Request $request)
-    {
-        if ($request->hasFile('image')) {
-            $this->validate($request,
-                [
-                    'image' => 'max:1024',
-                ],
-                [
-                    'image.max' => "Your image file could not be saved, because it exceeds 1 MB, the maximum allowed size for uploads. "
-                ]
-            );
-
-            $destinationPath = 'uploads/editors';
-
-            $fileName =  microtime() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move($destinationPath, $fileName);
-            $path = '/' . $destinationPath . '/' . $fileName;
-
-            return $path;
-        }
     }
 
 }

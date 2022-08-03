@@ -21,6 +21,8 @@
 n, and more.
 |
 */
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AnswerController;
 // use App\Http\Controllers\Auth\AuthController;
@@ -76,11 +78,11 @@ Route::group(['middleware' => ['web']], function () {
 
 
 Route::get('/upgrade-db/{id}', function ($id) {
-    $contest = \App\Models\Contest::findOrFail($id);
+    $contest = App\Models\Contest::findOrFail($id);
     $participants = $contest->participants;
     foreach ($participants as $participant) {
         $point = 0;
-        $answerPoints = \App\Models\Answer::where('user_id', $participant->user_id)->where('target_id', $contest->id)->where('target_type', 'contest')->get();
+        $answerPoints = App\Models\Answer::where('user_id', $participant->user_id)->where('target_id', $contest->id)->where('target_type', 'contest')->get();
         foreach ($answerPoints as $answerPoint) {
             $point += $answerPoint->point;
         }
@@ -93,9 +95,9 @@ Route::get('/upgrade-db/{id}', function ($id) {
 
 
 Route::get('/upgrade-bl/{id}', function ($id) {
-    $results = \App\Models\Answer::where('target_id', $id)->where('target_type', 'contest')->get();
-    foreach ($results as $result){
-        if($result->question->type == "Fill in the blank"){
+    $results = App\Models\Answer::where('target_id', $id)->where('target_type', 'contest')->get();
+    foreach ($results as $result) {
+        if ($result->question->type == "Fill in the blank") {
             $ans = $result->question->answer;
             $st = strpos($ans, '[Key]');
             $keys = [];
@@ -116,27 +118,26 @@ Route::get('/upgrade-bl/{id}', function ($id) {
         }
     }
     return "done";
-
 });
 
 
 Route::group(['middleware' => 'web'], function () {
-    Route::post('/join-contest', [ContestController::class,'join']);
-    Route::post('/upload/speaking', [MediaController::class,'store']);
-//    Route::auth();
+    Route::post('/join-contest', [ContestController::class, 'join']);
+    Route::post('/upload/speaking', [MediaController::class, 'store']);
+    //    Route::auth();
 
-    Route::get('/home', [HomeController::class,'index'])->name('home');
-//    Route::get('/', 'HomeController@index');
-    Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    //    Route::get('/', 'HomeController@index');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-    Route::get('/about', [HomeController::class,'about'])->name('about');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-    Route::get('/all_courses', [CourseController::class,'all_course'])->name('all_courses');
-    Route::get('/detail-course/{id}', [CourseController::class,'detailCourse'])->name('detail-course');
+    Route::get('/all_courses', [CourseController::class, 'all_course'])->name('all_courses');
+    Route::get('/detail-course/{id}', [CourseController::class, 'detailCourse'])->name('detail-course');
     Route::get('/successful', [CourseController::class, 'successful'])->name('successful');
 
     //instructor
-    Route::get('/profilee', [ProfileinsController::class,'profileins'])->name('profile');
+    Route::get('/profilee', [ProfileinsController::class, 'profileins'])->name('profile');
     Route::get('/earnings', [EarningsController::class, 'earnings'])->name('earnings');
     Route::get('/mycourses', [CoursesinsController::class, 'mycourses'])->name('mycourses');
     Route::get('/orders', [OrdersController::class, 'orders'])->name('orders');
@@ -174,88 +175,87 @@ Route::group(['middleware' => 'web'], function () {
 
 
     Route::group(['prefix' => 'course'], function () {
-        Route::get('/index/{type}/{id}',  [CourseController::class,'index'])->name('course.index');
-        Route::get('/quizzes',  [CourseController::class,'show_quizzes']);
-        Route::get('/{id}',  [CourseController::class,'show'])->name('course.show');
+        Route::get('/index/{type}/{id}',  [CourseController::class, 'index'])->name('course.index');
+        Route::get('/quizzes',  [CourseController::class, 'show_quizzes']);
+        Route::get('/{id}',  [CourseController::class, 'show'])->name('course.show');
     });
-//    Route::get('/reviewTest', 'ContestController@get_first_review')->name('contest.get_reviews');
+    //    Route::get('/reviewTest', 'ContestController@get_first_review')->name('contest.get_reviews');
     Route::get('/speaking', function () {
         return view('guests.speaking');
     });
 
 
-    Route::get('/{courseId}/lesson/{lessonId}',  [LessonController::class,'show'])->name('lesson.show');
+    Route::get('/{courseId}/lesson/{lessonId}',  [LessonController::class, 'show'])->name('lesson.show');
 
-    Route::get('/lesson/{id}/homework/',  [HomeworkController::class,'show'])->name('lesson.homework.show');
-    Route::get('/lesson/{lesson_id}/preview',  [LessonController::class,'showPreview'])->name('lesson.showpreview');
+    Route::get('/lesson/{id}/homework/',  [HomeworkController::class, 'show'])->name('lesson.homework.show');
+    Route::get('/lesson/{lesson_id}/preview',  [LessonController::class, 'showPreview'])->name('lesson.showpreview');
 
-    Route::post('/lesson/change',  [LessonController::class,'change'])->name('lesson.change');
+    Route::post('/lesson/change',  [LessonController::class, 'change'])->name('lesson.change');
     //
-    Route::get('/get_start_time',  [ContestController::class,'get_start_time']);
+    Route::get('/get_start_time',  [ContestController::class, 'get_start_time']);
 
-    Route::get('/contests/index',  [ContestController::class,'index'])->name('contest.index');
-    Route::get('/contests/{contestID}', [ContestController::class,'show'])->name('contest.show');
-    Route::get('/check_email/{email}',  [HomeController::class,'checkEmail']);
+    Route::get('/contests/index',  [ContestController::class, 'index'])->name('contest.index');
+    Route::get('/contests/{contestID}', [ContestController::class, 'show'])->name('contest.show');
+    Route::get('/check_email/{email}',  [HomeController::class, 'checkEmail']);
 
     //blog
-    Route::get('/blogs',  [CourseController::class,'index']);
-    Route::get('/blogs/{title}',  [BlogController::class,'show']);
+    Route::get('/blogs',  [CourseController::class, 'index']);
+    Route::get('/blogs/{title}',  [BlogController::class, 'show']);
 
 
-    Route::get('/activities',  [ActivityController::class,'index'])->name('activity.index');
-    Route::get('/activities/{id}/{slug}',  [ActivityController::class,'show'])->name('activity.show');
+    Route::get('/activities',  [ActivityController::class, 'index'])->name('activity.index');
+    Route::get('/activities/{id}/{slug}',  [ActivityController::class, 'show'])->name('activity.show');
 
     //user routes
     Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'contests'], function () {
 
-//        Route::get('/{contestID}/quizzes', 'ContestController@show_quizzes')->name('contest.show_quizzes');
-//        Route::get('/{contestID}/quizzes', 'ContestController@get_first_content')->name('contest.get_first_content');
-            Route::get('/{contestID}/quizzes', [ContestController::class,'get_contents'])->name('contest.get_contents');
-            Route::get('/show-answers/{id}', [ContestController::class,'showAnswersContest'])->name('contest.show.answers');
-            Route::post('/result-exam-test/{id}', [ContestController::class,'resultExamEnglish'])->name('contest.resultExamEnglish');
-            Route::post('exam-english-pdf', [ContestController::class,'examEnglishPDF'])->name('examEnglishPDF');
-            Route::get('/{contestID}/reviews/{index}', [ContestController::class,'get_reviews'])->name('contest.get_reviews');
-            Route::get('/answers-review/{id}', [ContestController::class,'getReviewAnwers'])->name('contest.getReviewAnwers');
-//        Route::get('/{contestID}/quizzes', 'ContestController@show')->name('contest.show');
+            //        Route::get('/{contestID}/quizzes', 'ContestController@show_quizzes')->name('contest.show_quizzes');
+            //        Route::get('/{contestID}/quizzes', 'ContestController@get_first_content')->name('contest.get_first_content');
+            Route::get('/{contestID}/quizzes', [ContestController::class, 'get_contents'])->name('contest.get_contents');
+            Route::get('/show-answers/{id}', [ContestController::class, 'showAnswersContest'])->name('contest.show.answers');
+            Route::post('/result-exam-test/{id}', [ContestController::class, 'resultExamEnglish'])->name('contest.resultExamEnglish');
+            Route::post('exam-english-pdf', [ContestController::class, 'examEnglishPDF'])->name('examEnglishPDF');
+            Route::get('/{contestID}/reviews/{index}', [ContestController::class, 'get_reviews'])->name('contest.get_reviews');
+            Route::get('/answers-review/{id}', [ContestController::class, 'getReviewAnwers'])->name('contest.getReviewAnwers');
+            //        Route::get('/{contestID}/quizzes', 'ContestController@show')->name('contest.show');
         });
 
-        Route::get('/{id}/course/quizzes', [CourseController::class,'showQuizzes'])
+        Route::get('/{id}/course/quizzes', [CourseController::class, 'showQuizzes'])
             ->name('course.quizzes');
-        Route::post('/post_comment', [CourseController::class,'post_comment'])->name('post_comment');
+        Route::post('/post_comment', [CourseController::class, 'post_comment'])->name('post_comment');
         //Route::get('/lesson/{lessonID}', 'CourseController@show_lesson')->name('lesson.show');
-        Route::post('/lessons/{id}/finishhomework', [LessonController::class,'finishHomework']);
-        Route::post('/cancel', [CourseController::class,'cancel'])->name('cancel');
-        Route::post('/purchase', [CourseController::class,'purchase'])->name('purchase');
-        Route::post('/cancel_contest', [ContestController::class,'cancel'])->name('cancel.contest');
-        Route::post('/purchase_contest', [ContestController::class,'purchase'])->name('purchase.contest');
-        Route::get('/logout', [AuthController::class,'logout'])->name('logout');
-        Route::get('/my_courses', [CourseController::class,'my_courses'])->name('my_courses');
-        Route::get('/my_contests', [ContestController::class,'myContests'])->name('myContests');
+        Route::post('/lessons/{id}/finishhomework', [LessonController::class, 'finishHomework']);
+        Route::post('/cancel', [CourseController::class, 'cancel'])->name('cancel');
+        Route::post('/purchase', [CourseController::class, 'purchase'])->name('purchase');
+        Route::post('/cancel_contest', [ContestController::class, 'cancel'])->name('cancel.contest');
+        Route::post('/purchase_contest', [ContestController::class, 'purchase'])->name('purchase.contest');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::get('/my_courses', [CourseController::class, 'my_courses'])->name('my_courses');
+        Route::get('/my_contests', [ContestController::class, 'myContests'])->name('myContests');
 
-        Route::get('student/profile', [ProfileController::class,'show'])->name('student.profile');
-        Route::get('/dashboard', [DashboardController::class,'index']);
-        Route::get('/profile', [ProfileController::class,'show'])->name('student.profile.show');
-        Route::post('/profile', [ProfileController::class,'changePassword'])->name('student.profile.update');
-        Route::post('/profile/avatar',[ProfileController::class,'changeAvatar']);
-        Route::get('/enroll', [EnrollController::class,'index']);
-        Route::post('/enroll/{classId}', [EnrollController::class,'create']);
-        Route::get('/class/{classId}', [ClassController::class,'show']);
-        Route::get('/class/{classId}/leaderboard', [ClassController::class,'leaderBoard']);
-        Route::get('/class/{classId}/homework/{blockId}', [HomeworkController::class,'show']);
-        Route::get('/class/{classId}/homework/next', [HomeworkController::class,'nextHomework']);
-        Route::post('/class/{classId}/homework/{targetType}/{targetId}', [HomeworkController::class,'process']);
-        Route::get('/class/{classId}/review/{blockId}', [HomeworkController::class,'review']);
+        Route::get('student/profile', [ProfileController::class, 'show'])->name('student.profile');
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/profile', [ProfileController::class, 'show'])->name('student.profile.show');
+        Route::post('/profile', [ProfileController::class, 'changePassword'])->name('student.profile.update');
+        Route::post('/profile/avatar', [ProfileController::class, 'changeAvatar']);
+        Route::get('/enroll', [EnrollController::class, 'index']);
+        Route::post('/enroll/{classId}', [EnrollController::class, 'create']);
+        Route::get('/class/{classId}', [ClassController::class, 'show']);
+        Route::get('/class/{classId}/leaderboard', [ClassController::class, 'leaderBoard']);
+        Route::get('/class/{classId}/homework/{blockId}', [HomeworkController::class, 'show']);
+        Route::get('/class/{classId}/homework/next', [HomeworkController::class, 'nextHomework']);
+        Route::post('/class/{classId}/homework/{targetType}/{targetId}', [HomeworkController::class, 'process']);
+        Route::get('/class/{classId}/review/{blockId}', [HomeworkController::class, 'review']);
         //answer ajax
-        Route::post('/answers/{cid}/{qid}', [AnswerController::class,'store']);
-        Route::get('/answers/{cid}/{qid}', [AnswerController::class,'show']);
+        Route::post('/answers/{cid}/{qid}', [AnswerController::class, 'store']);
+        Route::get('/answers/{cid}/{qid}', [AnswerController::class, 'show']);
 
-        Route::get('/answers_review/{cid}/{qid}', [AnswerController::class,'showTrueAnswer']);
-        Route::get('/answers_review_sort_word/{cid}/{qid}', [AnswerController::class,'showTrueAnswerSortWord']);
-        Route::get('/answers_review_edit/{cid}/{qid}', [AnswerController::class,'showTrueAnswerEdit']);
-        Route::get('/answers_review_enter_words/{cid}/{qid}', [AnswerController::class,'showTrueAnswerEnterWords']);
-        Route::get('/answers_review_sort_sentences/{cid}/{qid}', [AnswerController::class,'showTrueAnswerSortSentences']);
-        Route::get('/questions/{qid}', [AnswerController::class,'showTrueAnswer']);
-
+        Route::get('/answers_review/{cid}/{qid}', [AnswerController::class, 'showTrueAnswer']);
+        Route::get('/answers_review_sort_word/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerSortWord']);
+        Route::get('/answers_review_edit/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerEdit']);
+        Route::get('/answers_review_enter_words/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerEnterWords']);
+        Route::get('/answers_review_sort_sentences/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerSortSentences']);
+        Route::get('/questions/{qid}', [AnswerController::class, 'showTrueAnswer']);
     });
 });

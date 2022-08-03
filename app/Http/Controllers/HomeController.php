@@ -23,17 +23,16 @@ class HomeController extends Controller
     {
         $groups = $groupRepository->groups();
         $courses = Course::available()->orderBy('updated_at', 'desc')->take(8)->get();
-        // dd($courses);
         $contests = Contest::available()->orderBy('start_time', 'desc')->take(8)->get();
         $activities = Activity::orderBy('created_at', 'desc')->take(2)->get();
         $upcomingContest = Contest::where('start_time', '>', Carbon::now())->orderBy('start_time')->first();
-        /*        $courses = [$all_courses[0], $all_courses[1], $all_courses[2]];*/
-        return view('pages.home', compact('groups', 'courses', 'contests', 'activities', 'upcomingContest'));
+/*        $courses = [$all_courses[0], $all_courses[1], $all_courses[2]];*/
+        return view('pages.home',compact('groups', 'courses', 'contests', 'activities', 'upcomingContest'));
     }
 
     public function contact()
     {
-        return view('pages.contact');
+        return view('guests.contact');
     }
 
     public function login()
@@ -48,10 +47,5 @@ class HomeController extends Controller
         if (in_array($email, $emails))
             return 'True';
         return 'False';
-    }
-
-    public function about()
-    {
-        return view('pages.about');
     }
 }

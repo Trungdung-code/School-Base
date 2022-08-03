@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 use App\Models\Resource;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -22,14 +23,14 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
 
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectPath = '/my_courses';
+    protected $redirectPath = '/dashboard';
     protected $redirectAfterLogout = '/home';
 
     /**
@@ -48,12 +49,12 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
-/*            'name' => 'required|max:255',
+        $validated = $request->validate([
+            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',*/
+            'password' => 'required|confirmed|min:6',
         ]);
     }
 
@@ -69,14 +70,13 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-//            'phone' => $data['phone'],
-            'role' => 'student'
+            'role' => User::ROLE_STUDENT
         ]);
-/*        Resource::create([
+        Resource::create([
             'resourceable_id'=>$user->id,
             'resourceable_type'=>User::class,
             'path'=>'/img/avatar.png'
-        ]);*/
+        ]);
         return $user;
     }
     /*
@@ -85,9 +85,9 @@ class AuthController extends Controller
     protected function authenticated($request, $user)
     {
         if($user->role === User::ROLE_ADMIN) {
-            return redirect()->intended('/admin/courses');
+            return redirect()->intended('/admin/dashboard');
         }
 
-        return redirect()->intended('/my_courses');
+        return redirect()->intended('/dashboard');
     }
 }

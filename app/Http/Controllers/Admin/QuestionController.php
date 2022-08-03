@@ -12,7 +12,6 @@ use URL;
 
 class QuestionController extends Controller
 {
-
     public function store($id, Request $request)
     {
         switch ($request->get('q_type')) {
@@ -464,55 +463,5 @@ class QuestionController extends Controller
         $question->true_answer = $request->get('duration');
         $question->hint = $request->get('explanation');
         $question->save();
-    }
-
-    //import bunch of questions
-    public function import($id, Request $request)
-    {
-        $data = $request->data;
-        $result = [];
-        $lines = preg_split("/((\r?\n)|(\r\n?))/", $data);
-        $i = 0;
-        for ($i; $i < count($lines) - 3; $i = $i + 3) {
-            $questionText = trim($lines[$i]);
-            $answersLine = $lines[$i + 1];
-            $trueAnswer = $lines[$i + 2];
-            $start = strpos($questionText, ':');
-            $questionText = trim(substr($questionText, $start + 1));
-            $answers = [];
-
-            $tempAnswers = preg_split('/\t+/', $answersLine);
-            foreach ($tempAnswers as $item) {
-                $index = strpos($item, '.');
-                array_push($answers, trim(substr($item, $index + 1)));
-            }
-            if ($trueAnswer == 'A') {
-                $trueAnswer = 1;
-            }
-            if ($trueAnswer == 'B') {
-                $trueAnswer = 2;
-            }
-            if ($trueAnswer == 'C') {
-                $trueAnswer = 3;
-            }
-            if ($trueAnswer == 'D') {
-                $trueAnswer = 4;
-            }
-            array_push($result, $questionText);
-            array_push($result, $answers);
-            array_push($result, $trueAnswer);
-
-            $question = new \App\Models\Question();
-            $question->question_block_id = $id;
-            $question->type = "Choose one answer";
-            $question->question = $questionText;
-            $question->answer = json_encode($answers);
-            $question->point = 1;
-            $question->true_answer = $trueAnswer;
-            $question->hint = "";
-            $question->explain = "";
-            $question->save();
-        }
-        return Redirect::back();
     }
 }

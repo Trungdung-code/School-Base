@@ -8,7 +8,7 @@ use App\Models\Participant;
 use App\Models\Question;
 use App\Models\UserLesson;
 use App\Models\UserQuestion;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\MyClass;
 use Illuminate\Http\Request;
 
@@ -242,7 +242,7 @@ class HomeworkController extends Controller
                 $oldAnswer->delete();
         }
 
-        \Cache::add(Auth::user()->id.":".$qid, 1, 90);
+        Cache::add(Auth::user()->id.":".$qid, 1, 90);
 
         if ($qtype == Question::TYPE_7) {
             Auth::user()->questions()->attach([$question->id => ['answer' => $answer, 'point' => $point, 'review_status' => UserQuestion::WAITING_FOR_REVIEW], 'target_type' => $targetType, 'target_id' => $targetId]);

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
+
+use Illuminate\Support\Facades\Auth;
 
 class EnrollController extends Controller
 {
@@ -28,7 +29,7 @@ class EnrollController extends Controller
             "my_class_id"=>$classId,
             "state"=>UserClass::STATUS_PENDING
         ]);
-        
+
         return redirect()->back();
     }
 }

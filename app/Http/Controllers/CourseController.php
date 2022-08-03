@@ -10,7 +10,7 @@ use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 

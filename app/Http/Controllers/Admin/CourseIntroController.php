@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Resource;
 use App\Models\Section;
@@ -21,20 +20,6 @@ use Illuminate\Support\Facades\Input;
 
 Class CourseIntroController extends Controller
 {
-    public function courses()
-    {
-        $available_courses = Course::available()->paginate(4, null, "available_courses", null);
-        $expired_courses = Course::expired()->paginate(4, null, 'expired_courses', null);
-        $drafted_courses = Course::expired()->paginate(4, null, 'drafted_courses', null);
-        return view('teacher.courses.index', compact('available_courses', 'expired_courses', 'drafted_courses'));
-    }
-
-    public function show_course(Request $request)
-    {
-        $course = Course::findOrFail($request->course_id);
-        return view('teacher.courses.show', compact('course'));
-    }
-
     public function fetchGroups($id, GroupRepository $groupRepository)
     {
         $group = $groupRepository->group($id);
@@ -73,7 +58,7 @@ Class CourseIntroController extends Controller
         $course->videoIntro->path = $request->get('video-url');
         $course->videoIntro->save();
         $course->save();
-/*        $currentCurriculum = $course->curriculum;
+        $currentCurriculum = $course->curriculum;
         if($currentCurriculum != null)
         {
             $currentCurriculum->course_id = null;
@@ -81,7 +66,7 @@ Class CourseIntroController extends Controller
         }
         $newCurriculum = $curriculumRepository->curriculum($request->get('curriculum-id'));
         $newCurriculum->course_id = $id;
-        $newCurriculum->save();*/
+        $newCurriculum->save();
         return redirect()->back();
     }
 
@@ -91,7 +76,7 @@ Class CourseIntroController extends Controller
         $section = new Section();
         $section->name = $request->get('name');
         $section->description = $request->get('description');
-/*        $section->curriculum_id = $curriculum;*/
+        $section->curriculum_id = $curriculum;
         $section->save();
         return redirect()->back();
     }
@@ -117,6 +102,8 @@ Class CourseIntroController extends Controller
     {
         $lesson = new Lesson();
         $lesson->name = $request->get('name');
+        $lesson->intro = $request->get('intro');
+        $lesson->duration = $request->get('duration');
         $lesson->section_id = $section_id;
         $lesson->save();
         return redirect()->back();
@@ -125,6 +112,8 @@ Class CourseIntroController extends Controller
     {
         $lesson = $lessonRepository->lesson($id);
         $lesson->name = $request->get('name');
+        $lesson->intro = $request->get('intro');
+        $lesson->duration = $request->get('duration');
         $lesson->save();
         return redirect()->back();
     }
@@ -132,14 +121,6 @@ Class CourseIntroController extends Controller
     {
         $lesson = $lessonRepository->lesson($id);
         $lesson->delete();
-        return redirect()->back();
-    }
-
-    public function updateCategory(Request $request)
-    {
-        $course = Course::find($request->course_id);
-        $course->category_id = $request->category_id;
-        $course->save();
         return redirect()->back();
     }
 }
