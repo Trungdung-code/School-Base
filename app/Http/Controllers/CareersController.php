@@ -8,6 +8,6 @@ class CareersController extends Controller
 {
     public function careers()
     {
-        return view('pages.careers');
+        return view('pages.extrapage.careers');
     }
 }

@@ -8,6 +8,6 @@ class FAQController extends Controller
 {
     public function FAQ()
     {
-        return view('pages.FAQ');
+        return view('pages.extrapage.FAQ');
     }
 }

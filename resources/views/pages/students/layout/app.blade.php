@@ -20,19 +20,17 @@
     @include('pages.layout.menu')
     @include('pages.students.layout.my_profile')
     <section class="py-3 border-bottom bg-white shadow-sm">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="creatives d-flex align-items-center">
-            <a href="student-billing-info.html#" class="small text-primary"
-              >Home</a
-            >
-            <i class="bi bi-caret-right mx-1"></i>
-            <a href="student-billing-info.html#" class="small">Student</a>
-            <i class="bi bi-caret-right mx-1"></i>
-            <a href="student-billing-info.html#" class="small">Billing Info</a>
-          </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="creatives d-flex align-items-center">
+                    <a href="student-billing-info.html#" class="small text-primary">Home</a>
+                    <i class="bi bi-caret-right mx-1"></i>
+                    <a href="student-billing-info.html#" class="small">Student</a>
+                    <i class="bi bi-caret-right mx-1"></i>
+                    <a href="student-billing-info.html#" class="small">Billing Info</a>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
     <div class="pt-5 pb-5">
         <div class="container">

@@ -44,7 +44,7 @@
                         <img src="img/1.jpg" class="img-fluid" alt="#" loading="lazy">
                         <div class="card-body">
                             <h6 class="card-title pb-3 text-black mb-0">
-                                <span class="bg-warning badge text-black me-2">{{ __('BEST SELLER') }}</span>
+                                <span class="bg-wa rning badge text-black me-2">{{ __('BEST SELLER') }}</span>
                                 {{ $course->name }}
                             </h6>
                             <p class="card-text mb-0">A course by Arantxa & Guille</p>

@@ -8,6 +8,6 @@ class TermAndConditionsController extends Controller
 {
     public function term()
     {
-        return view('pages.term');
+        return view('pages.extrapage.term_conditions');
     }
 }

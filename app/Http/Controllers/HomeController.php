@@ -32,7 +32,12 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('guests.contact');
+        return view('pages.extrapage.contact');
+    }
+
+    public function about()
+    {
+        return view('pages.extrapage.about');
     }
 
     public function login()

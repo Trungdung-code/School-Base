@@ -60,6 +60,9 @@ use App\Http\Controllers\TermAndConditionsController;
 use App\Http\Controllers\PrivacypolicyController;
 use App\Http\Controllers\Notfound404Controller;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ExamController;
+use App\Http\Middleware\Admin;
+
 //use App\Http\Controllers\Admin\AnswerController;
 
 require __DIR__ . '/auth.php';
@@ -126,7 +129,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/upload/speaking', [MediaController::class, 'store']);
     //    Route::auth();
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     //    Route::get('/', 'HomeController@index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
@@ -172,7 +175,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/privacypolicy', [PrivacypolicyController::class, 'privacypolicy'])->name('privacypolicy');
     Route::get('/notfound404', [Notfound404Controller::class, 'notfound404'])->name('notfound404');
 
-
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/',  [ExamController::class, 'index'])->name('admin.index');
+    });
 
     Route::group(['prefix' => 'course'], function () {
         Route::get('/index/{type}/{id}',  [CourseController::class, 'index'])->name('course.index');

@@ -45,20 +45,20 @@ class Course extends Model
      * check
      * @return bool
      */
-    // public function hasClass()
-    // {
-    //     $curri = $this->curriculum;
-    //     if ($curri == null)
-    //         return false;
-    //     if (count($curri->incomingClasses) > 0) {
-    //         foreach ($curri->incomingClasses as $myClass) {
-    //             if (Auth::user()->isClassAvailable($myClass->id)) {
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
+    public function hasClass()
+    {
+        $curri = $this->curriculum;
+        if ($curri == null)
+            return false;
+        if (count($curri->incomingClasses) > 0) {
+            foreach ($curri->incomingClasses as $myClass) {
+                if (Auth::user()->isClassAvailable($myClass->id)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public function sections()
     {

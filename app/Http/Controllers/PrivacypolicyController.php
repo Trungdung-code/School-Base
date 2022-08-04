@@ -8,6 +8,6 @@ class PrivacypolicyController extends Controller
 {
     public function privacypolicy()
     {
-        return view('pages.privacy_policy');
+        return view('pages.extrapage.privacy_policy');
     }
 }

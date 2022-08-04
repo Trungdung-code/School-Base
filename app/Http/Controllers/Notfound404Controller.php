@@ -8,6 +8,6 @@ class Notfound404Controller extends Controller
 {
     public function notfound404()
     {
-        return view('pages.notfound');
+        return view('pages.extrapage.not_found');
     }
 }

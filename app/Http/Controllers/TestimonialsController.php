@@ -8,6 +8,6 @@ class TestimonialsController extends Controller
 {
     public function testimonials()
     {
-        return view('pages.testimonials');
+        return view('pages.extrapage.testimonials');
     }
 }
