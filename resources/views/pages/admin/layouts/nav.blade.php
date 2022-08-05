@@ -1,5 +1,6 @@
     <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+    <nav
+        class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">
                 <ul class="nav navbar-nav d-xl-none">
@@ -285,13 +286,15 @@
                             href="app-todo.html"><i class="me-50" data-feather="check-square"></i> Task</a><a
                             class="dropdown-item" href="app-chat.html"><i class="me-50"
                                 data-feather="message-square"></i> Chats</a>
-                        <div class="dropdown-divider"></div><a class="dropdown-item"
-                            href="page-account-settings-account.html"><i class="me-50" data-feather="settings"></i>
-                            Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="me-50"
-                                data-feather="credit-card"></i> Pricing</a><a class="dropdown-item"
-                            href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a><a
-                            class="dropdown-item" href="auth-login-cover.html"><i class="me-50"
-                                data-feather="power"></i> Logout</a>
+                        <div class="dropdown-divider"></div><a class="dropdown-item" href="page-account-settings-account.html"><i class="me-50" data-feather="settings"></i>Settings</a>
+                        <a class="dropdown-item" href="page-pricing.html"><i class="me-50" data-feather="credit-card"></i> Pricing</a>
+                        <a class="dropdown-item"href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item" href="logout" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <i class="me-50" data-feather="power"></i>Log Out
+                            </a>
+                        </form>
                     </div>
                 </li>
             </ul>
