@@ -17,7 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      * In addition, it is set as the URL generator's root namespace.
      *
      * @var string
+     *
      */
+    public const HOME = '/dashboard';
     // protected $namespace = 'App\Http\Controllers';
 
     public function boot()
@@ -31,14 +33,11 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
-        });
-        $this->admin();
-    }
 
-    private function admin()
-    {
-        Route::middleware(['web', 'auth', 'admin'])
-            ->group(base_path('routes/admin.php'));
+            Route::middleware(['admin'])
+                ->prefix('admin')
+                ->group(base_path('routes/admin.php'));
+        });
     }
 
     /**
@@ -63,5 +62,4 @@ class RouteServiceProvider extends ServiceProvider
             }
         });
     }
-
 }

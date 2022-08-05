@@ -71,9 +71,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
     // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
 }
-//Route::get('demo', function(){
-//   echo '123';
-//});
+
 Route::group(['middleware' => ['web']], function () {
     Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
     Route::get('/callback/{provider}', 'SocialController@callback');
@@ -125,6 +123,7 @@ Route::get('/upgrade-bl/{id}', function ($id) {
 
 
 Route::group(['middleware' => 'web'], function () {
+
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
     //    Route::auth();
@@ -161,13 +160,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/student/social-profiles', [ProfileController::class, 'socialProfiles'])->name('social-profiles');
     Route::get('/student/subscriptions', [SubcriptionsController::class, 'subscriptions'])->name('subscrip');
 
-
-
-    //auth
-    Route::get('/login', [UserController::class, 'login'])->name('login');
-    Route::get('/forgot', [UserController::class, 'forgot'])->name('forgot');
-    Route::get('/signup', [UserController::class, 'signup'])->name('signup');
-
     Route::get('/FAQ', [FAQController::class, 'FAQ'])->name('FAQ');
     Route::get('/careers', [CareersController::class, 'careers'])->name('careers');
     Route::get('/testimonials', [TestimonialsController::class, 'testimonials'])->name('testimonials');
@@ -175,9 +167,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/privacypolicy', [PrivacypolicyController::class, 'privacypolicy'])->name('privacypolicy');
     Route::get('/notfound404', [Notfound404Controller::class, 'notfound404'])->name('notfound404');
 
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/',  [ExamController::class, 'index'])->name('admin.index');
-    });
 
     Route::group(['prefix' => 'course'], function () {
         Route::get('/index/{type}/{id}',  [CourseController::class, 'index'])->name('course.index');

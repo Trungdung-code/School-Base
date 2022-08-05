@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AnswerController;
 
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
     //Route::resource('courses', 'CoursesController');
     //navigate view
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
@@ -204,6 +204,3 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('/tags', [TagController::class, 'index'])->name('admin.tag.index');
     Route::post('/tags', [TagController::class, 'create'])->name('admin.tag.create');
-
-
-});

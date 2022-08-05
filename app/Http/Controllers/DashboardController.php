@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        return view('student.dashboard', compact('user'));
+        return view('pages.admin.index', compact('user'));
     }
 }
