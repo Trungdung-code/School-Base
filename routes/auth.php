@@ -30,10 +30,11 @@ Route::get('/users-logout', [UserController::class, 'destroy'])
     ->name('user.logout')->middleware('auth');
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
+    Route::get('admin/register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register-process', [RegisteredUserController::class, 'store'])
+        ->name('register-process');
 
     Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
