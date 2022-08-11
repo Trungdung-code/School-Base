@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Register Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Forgot Password Page - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -91,37 +91,22 @@ License: You must have a valid license purchased only from themeforest(the above
               <!-- /Brand logo-->
               <!-- Left Text-->
               <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
-                <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="../../../app-assets/images/pages/register-v2.svg" alt="Register V2"/></div>
+                <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="../../../app-assets/images/pages/forgot-password-v2.svg" alt="Forgot password V2"/></div>
               </div>
               <!-- /Left Text-->
-              <!-- Register-->
+              <!-- Forgot password-->
               <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                  <h2 class="card-title fw-bold mb-1">Adventure starts here 🚀</h2>
-                  <p class="card-text mb-2">Make your app management easy and fun!</p>
-                  <form class="auth-register-form mt-2" action="{{ route('register-process') }}" method="POST">
+                  <h2 class="card-title fw-bold mb-1">Forgot Password? 🔒</h2>
+                  <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
+                  <div status="session('status')"></div>
+                  <div errors="$errors"></div>
+                  <form class="auth-forgot-password-form mt-2" action="{{ route('password.email') }}" method="POST">
                     @csrf
                     <div class="mb-1">
-                      <label class="form-label" for="register-username">Username</label>
-                      <input class="form-control" id="register-username" type="text" name="name" placeholder="johndoe" aria-describedby="register-username" autofocus="" tabindex="1" required/>
-                    </div>
-                    <div class="mb-1">
-                      <label class="form-label" for="register-email">Email</label>
-                      <input class="form-control" id="register-email" type="email" name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" required/>
-                    </div>
-                    <div class="mb-1">
-                      <label class="form-label" for="register-password">Password</label>
-                      <div class="input-group input-group-merge form-password-toggle">
-                        <input class="form-control form-control-merge" id="register-password" type="password" name="password" placeholder="············" aria-describedby="register-password" tabindex="3" required/><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                      </div>
-                    </div>
-                    <div class="mb-1">
-                      <label class="form-label" for="register-password">Password</label>
-                      <div class="input-group input-group-merge form-password-toggle">
-                        <input class="form-control form-control-merge" id="register-password" type="password" name="password_confirmation" placeholder="············" aria-describedby="register-password" tabindex="3" required/><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                      </div>
-                    </div>
-                    @if ($errors->any())
+                      <label class="form-label" for="forgot-password-email">Email</label>
+                      <input class="form-control" id="forgot-password-email" type="email" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" autofocus="" tabindex="1" required/>
+                        @if ($errors->any())
                             <div style="color:#d81b60">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -129,23 +114,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @endforeach
                             </ul>
                             </div>
-                    @endif
-                    <div class="mb-1">
-                      <div class="form-check">
-                        <input class="form-check-input" id="register-privacy-policy" type="checkbox" tabindex="4"/>
-                        <label class="form-check-label" for="register-privacy-policy">I agree to<a href="#">&nbsp;privacy policy & terms</a></label>
-                      </div>
+                         @endif
                     </div>
-                    <button class="btn btn-primary w-100" tabindex="5">Sign up</button>
+                    <button type="submit" class="btn btn-primary w-100" tabindex="2">Send reset link</button>
                   </form>
-                  <p class="text-center mt-2"><span>Already have an account?</span><a href="auth-login-cover.html"><span>&nbsp;Sign in instead</span></a></p>
-                  <div class="divider my-2">
-                    <div class="divider-text">or</div>
-                  </div>
-                  <div class="auth-footer-btn d-flex justify-content-center"><a class="btn btn-facebook" href="#"><i data-feather="facebook"></i></a><a class="btn btn-twitter white" href="#"><i data-feather="twitter"></i></a><a class="btn btn-google" href="#"><i data-feather="mail"></i></a><a class="btn btn-github" href="#"><i data-feather="github"></i></a></div>
+                  <p class="text-center mt-2"><a href="{{ route('login') }}"><i data-feather="chevron-left"></i> Back to login</a></p>
                 </div>
               </div>
-              <!-- /Register-->
+              <!-- /Forgot password-->
             </div>
           </div>
         </div>
@@ -168,7 +144,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="../../../app-assets/js/scripts/pages/auth-register.min.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/auth-forgot-password.min.js"></script>
     <!-- END: Page JS-->
 
     <script>

@@ -224,7 +224,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('/purchase', [CourseController::class, 'purchase'])->name('purchase');
         Route::post('/cancel_contest', [ContestController::class, 'cancel'])->name('cancel.contest');
         Route::post('/purchase_contest', [ContestController::class, 'purchase'])->name('purchase.contest');
-        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+        // Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/my_courses', [CourseController::class, 'my_courses'])->name('my_courses');
         Route::get('/my_contests', [ContestController::class, 'myContests'])->name('myContests');
 

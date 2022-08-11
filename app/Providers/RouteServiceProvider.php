@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      *
      */
-    public const HOME = '/dashboard';
+    public const HOME = 'admin/dashboard';
     // protected $namespace = 'App\Http\Controllers';
 
     public function boot()
@@ -34,7 +34,8 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware(['admin'])
+            Route::middleware(['web', 'checkRole:admin'])
+                ->name('admin.')
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
         });

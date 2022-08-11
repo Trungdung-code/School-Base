@@ -17,16 +17,16 @@ use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AnswerController;
-
-
+use App\Http\Controllers\Admin\Auth\NewPasswordController;
 
     //Route::resource('courses', 'CoursesController');
     //navigate view
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::post('editor/image/upload', [DashboardController::class, 'uploadImage'])->name('admin.editor.upload_image');
+    Route::post('/editor/image/upload', [DashboardController::class, 'uploadImage'])->name('admin.editor.upload_image');
 
     Route::get('/classes/{classId}', [DashboardController::class, 'pendingwork']);
     Route::get('/classes/{classId}/reviewwriting/{reviewId}', [DashboardController::class, 'reviewWriting']);
@@ -204,3 +204,7 @@ use App\Http\Controllers\Admin\AnswerController;
 
     Route::get('/tags', [TagController::class, 'index'])->name('admin.tag.index');
     Route::post('/tags', [TagController::class, 'create'])->name('admin.tag.create');
+
+    Route::get('/account', [UserController::class, 'index'])->name('account.index');
+    Route::get('/security', [UserController::class, 'security'])->name('account.security');
+    Route::post('/update-password', [UserController::class, 'updatepassword'])->name('update.password');

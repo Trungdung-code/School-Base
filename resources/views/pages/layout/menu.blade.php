@@ -62,9 +62,6 @@
                         Extra Pages
                     </a>
                     <ul class="dropdown-menu m-0 border-0 shadow-sm p-2">
-                        <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('login') }}">Login</a></li>
-                        <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('signup') }}">Signup</a></li>
-                        <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('forgot') }}">Forgot</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('FAQ') }}">FAQ</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('careers') }}">Careers</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('testimonials') }}">Testimonials</a></li>
@@ -78,8 +75,8 @@
                 </li>
             </ul>
             <div class="d-flex gap-1 align-items-center main-header-nav-right">
-                <a href="{{ route('login') }}" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
-                <a href="{{ route('signup') }}" type="button" class="btn btn-success rounded-pill">Sign up</a>
+                <a href="#" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
+                <a href="#" type="button" class="btn btn-success rounded-pill">Sign up</a>
             </div>
         </div>
     </div>

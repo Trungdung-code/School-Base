@@ -103,16 +103,32 @@ License: You must have a valid license purchased only from themeforest(the above
                     @csrf
                     <div class="mb-1">
                       <label class="form-label" for="login-email">Email</label>
-                      <input class="form-control" id="login-email" type="text" name="email" placeholder="john@example.com" :value="old('email')" aria-describedby="login-email" autofocus="" tabindex="1"/>
+                      <input class="form-control" id="login-email" type="email" name="email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" required/>
                     </div>
                     <div class="mb-1">
                       <div class="d-flex justify-content-between">
-                        <label class="form-label" for="login-password">Password</label><a href="auth-forgot-password-cover.html"><small>Forgot Password?</small></a>
+                        <label class="form-label" for="login-password">Password</label><a href="{{ route('password.request') }}"><small>Forgot Password?</small></a>
                       </div>
                       <div class="input-group input-group-merge form-password-toggle">
-                        <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="············" aria-describedby="login-password" tabindex="2"/><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                        <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="············" aria-describedby="login-password" tabindex="2" required/><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                       </div>
                     </div>
+                    <span>{{ session('status') }}</span>
+                    @if ($errors->any())
+                    <div style="color:#d81b60">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    </div>
+                    @endif
+                    <div style="color:#d81b60">
+                    @if (Session::has('error'))
+                        {{ Session::get('error') }}
+                    @endif
+                    </div>
+                    <br/>
                     <div class="mb-1">
                       <div class="form-check">
                         <input class="form-check-input" id="remember-me" type="checkbox" tabindex="3"/>
