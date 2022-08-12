@@ -59,6 +59,7 @@ use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\TermAndConditionsController;
 use App\Http\Controllers\PrivacypolicyController;
 use App\Http\Controllers\Notfound404Controller;
+use App\Http\Controllers\Student\Auth\FacebookController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Middleware\Admin;
@@ -120,7 +121,8 @@ Route::get('/upgrade-bl/{id}', function ($id) {
     }
     return "done";
 });
-
+Route::get('/facebook/auth', [FacebookController::class, 'loginUsingFacebook'])->name('facebooklogin');
+Route::get('/facebook/callback', [FacebookController::class, 'callbackFromFacebook'])->name('callback');
 
 Route::group(['middleware' => 'web'], function () {
 
@@ -214,6 +216,7 @@ Route::group(['middleware' => 'web'], function () {
         // Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/my_courses', [CourseController::class, 'my_courses'])->name('my_courses');
         Route::get('/my_contests', [ContestController::class, 'myContests'])->name('myContests');
+
 
         Route::get('student/profile', [ProfileController::class, 'show'])->name('student.profile');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

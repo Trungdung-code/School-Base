@@ -40,6 +40,6 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK'),
         'client_secret' => env('FACEBOOK'),
-        'redirect' => 'http://localhost:8000/admin/auth/callback',
+        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
     ],
 ];
