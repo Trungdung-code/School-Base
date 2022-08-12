@@ -9,19 +9,32 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Student\Auth\AuthenticatedController;
+use App\Http\Controllers\Student\Auth\SignupController;
 use App\Http\Controllers\Admin\UserController;
 
-Route::get('student/login', function () {
-    return view('pages.student.auth.login');
-});
 // Route::middleware('guest')->group(function () {
 //     Route::get('admin/login', [UserController::class, 'login'])
 //         ->name('login');
 //     Route::post('login-phone-post', [UserController::class, 'store'])->name('login.store');
 // });
 
-Route::get('/users-logout', [UserController::class, 'destroy'])
-    ->name('user.logout')->middleware('auth');
+// Route::get('/users-logout', [UserController::class, 'destroy'])
+//     ->name('user.logout')->middleware('auth');
+
+Route::middleware('guest')->group(function () {
+        Route::get('login', [AuthenticatedController::class, 'login'])
+        ->name('student.login');
+        Route::post('login-student-process', [AuthenticatedController::class, 'store'])
+        ->name('login-student-process');
+
+        Route::get('signup', [SignupController::class, 'signup'])
+        ->name('signup');
+        Route::post('signup-process', [SignupController::class, 'store'])
+        ->name('signup-process');
+    });
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('admin/register', [RegisteredUserController::class, 'create'])
@@ -68,4 +81,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    Route::get('student-logout', [AuthenticatedController::class, 'destroy'])
+    ->name('student.logout');
 });

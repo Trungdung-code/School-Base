@@ -127,7 +127,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
     //    Route::auth();
-
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     //    Route::get('/', 'HomeController@index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -202,21 +201,9 @@ Route::group(['middleware' => 'web'], function () {
 
     //user routes
     Route::group(['middleware' => 'auth'], function () {
-        Route::group(['prefix' => 'contests'], function () {
-
-            //        Route::get('/{contestID}/quizzes', 'ContestController@show_quizzes')->name('contest.show_quizzes');
-            //        Route::get('/{contestID}/quizzes', 'ContestController@get_first_content')->name('contest.get_first_content');
-            Route::get('/{contestID}/quizzes', [ContestController::class, 'get_contents'])->name('contest.get_contents');
-            Route::get('/show-answers/{id}', [ContestController::class, 'showAnswersContest'])->name('contest.show.answers');
-            Route::post('/result-exam-test/{id}', [ContestController::class, 'resultExamEnglish'])->name('contest.resultExamEnglish');
-            Route::post('exam-english-pdf', [ContestController::class, 'examEnglishPDF'])->name('examEnglishPDF');
-            Route::get('/{contestID}/reviews/{index}', [ContestController::class, 'get_reviews'])->name('contest.get_reviews');
-            Route::get('/answers-review/{id}', [ContestController::class, 'getReviewAnwers'])->name('contest.getReviewAnwers');
-            //        Route::get('/{contestID}/quizzes', 'ContestController@show')->name('contest.show');
-        });
 
         Route::get('/{id}/course/quizzes', [CourseController::class, 'showQuizzes'])
-            ->name('course.quizzes');
+        ->name('course.quizzes');
         Route::post('/post_comment', [CourseController::class, 'post_comment'])->name('post_comment');
         //Route::get('/lesson/{lessonID}', 'CourseController@show_lesson')->name('lesson.show');
         Route::post('/lessons/{id}/finishhomework', [LessonController::class, 'finishHomework']);
@@ -229,7 +216,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/my_contests', [ContestController::class, 'myContests'])->name('myContests');
 
         Route::get('student/profile', [ProfileController::class, 'show'])->name('student.profile');
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/profile', [ProfileController::class, 'show'])->name('student.profile.show');
         Route::post('/profile', [ProfileController::class, 'changePassword'])->name('student.profile.update');
         Route::post('/profile/avatar', [ProfileController::class, 'changeAvatar']);
@@ -251,5 +238,17 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/answers_review_enter_words/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerEnterWords']);
         Route::get('/answers_review_sort_sentences/{cid}/{qid}', [AnswerController::class, 'showTrueAnswerSortSentences']);
         Route::get('/questions/{qid}', [AnswerController::class, 'showTrueAnswer']);
+        Route::group(['prefix' => 'contests'], function () {
+
+            //        Route::get('/{contestID}/quizzes', 'ContestController@show_quizzes')->name('contest.show_quizzes');
+            //        Route::get('/{contestID}/quizzes', 'ContestController@get_first_content')->name('contest.get_first_content');
+            Route::get('/{contestID}/quizzes', [ContestController::class, 'get_contents'])->name('contest.get_contents');
+            Route::get('/show-answers/{id}', [ContestController::class, 'showAnswersContest'])->name('contest.show.answers');
+            Route::post('/result-exam-test/{id}', [ContestController::class, 'resultExamEnglish'])->name('contest.resultExamEnglish');
+            Route::post('exam-english-pdf', [ContestController::class, 'examEnglishPDF'])->name('examEnglishPDF');
+            Route::get('/{contestID}/reviews/{index}', [ContestController::class, 'get_reviews'])->name('contest.get_reviews');
+            Route::get('/answers-review/{id}', [ContestController::class, 'getReviewAnwers'])->name('contest.getReviewAnwers');
+            //        Route::get('/{contestID}/quizzes', 'ContestController@show')->name('contest.show');
+        });
     });
 });

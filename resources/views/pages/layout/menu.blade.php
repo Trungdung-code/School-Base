@@ -77,6 +77,7 @@
             <div class="d-flex gap-1 align-items-center main-header-nav-right">
                 <a href="#" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
                 <a href="#" type="button" class="btn btn-success rounded-pill">Sign up</a>
+                <a href="{{ route('student.logout') }}" class="btn text-decoration-none text-white rounded-pill border-0">Log Out</a>
             </div>
         </div>
     </div>
