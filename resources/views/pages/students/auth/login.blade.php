@@ -36,7 +36,7 @@
                         <form action="{{ route('login-student-process') }}" method="POST" class="d-grid gap-3 mb-2">
                             @csrf
                             <div class="social-btn border rounded-3">
-                                <a href="signin.html#" class="text-dark w-100">
+                                <a href="{{ route('googlelogin') }}" class="text-dark w-100">
                                     <div class="d-flex align-items-center py-3 px-3 border-bottom">
                                         <img src="img/google-icon.png" class="img-fluid" alt="Edutree">
                                         <p class="mb-0 mx-auto">Login with Google</p>
@@ -107,31 +107,4 @@
 <script src="js/custom.js" type="0507e58f42c2c0b875726167-text/javascript"></script>
 <script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
     data-cf-settings="0507e58f42c2c0b875726167-|49" defer=""></script>
-    <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1137632616816792',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v3.3'
-    });
-
-    FB.AppEvents.logPageView();
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-
-
-</script>
-
 </html>

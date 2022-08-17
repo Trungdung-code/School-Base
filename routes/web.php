@@ -123,6 +123,9 @@ Route::get('/upgrade-bl/{id}', function ($id) {
 });
 Route::get('/facebook/auth', [FacebookController::class, 'loginUsingFacebook'])->name('facebooklogin');
 Route::get('/facebook/callback', [FacebookController::class, 'callbackFromFacebook'])->name('callback');
+Route::get('/google/auth', [FacebookController::class, 'loginUsingGoogle'])->name('googlelogin');
+Route::get('/google/callback', [FacebookController::class, 'callbackFromGoogle']);
+
 
 Route::group(['middleware' => 'web'], function () {
 

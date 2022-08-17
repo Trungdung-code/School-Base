@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('role');
-            $table->string('gender');
-            $table->dateTime('birthday');
-            $table->string('address');
-            $table->text('social_links'); // json format
+            $table->string('role')->nullable();
+            $table->string('gender')->nullable();
+            $table->dateTime('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->text('social_links')->nullable(); // json format
             $table->rememberToken();
             $table->timestamps();
         });
