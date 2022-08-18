@@ -4,6 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Promotion;
+use App\Models\Subcription;
+use App\Models\Transaction;
+use App\Models\Membership;
+use App\Models\Subject;
+use App\Models\Topic;
+use App\Models\Exam;
+use App\Models\Revise;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +29,40 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        User::factory()
+        ->count(10)
+        ->create();
+
+        Promotion::factory()
+        ->count(10)
+        ->create();
+
+        Subcription::factory()
+        ->count(10)
+        ->create();
+
+        Transaction::factory()
+        ->count(10)
+        ->create();
+
+        Membership::factory()
+        ->count(10)
+        ->create();
+
+        Subject::factory()
+        ->count(10)
+        ->create();
+
+        Topic::factory()
+        ->count(10)
+        ->create();
+
+        Exam::factory()
+        ->count(10)
+        ->create();
+
+        Revise::factory()
+        ->count(10)
+        ->create();
     }
 }
