@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -16,7 +17,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt($faker->email),
-        'remember_token' => str_random(10),
+        'remember_token' => Str::random(10),
         'role' => \App\Models\User::ROLE_STUDENT,
         'gender' => $faker->randomElement(['male', 'female', 'unknown']),
         'birthday' => $faker->dateTimeBetween('-40 years', '-15 years'),

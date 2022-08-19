@@ -28,13 +28,13 @@ class UserFactory extends Factory
             'gender' => Arr::random(['male', 'female']),
             'birthday' => fake()->dateTime(),
             'address' => fake()->address(),
+            'phone' => fake()->phoneNumber(),
             'social_links' => Arr::random([
                 'http://facebook.com/'.fake()->userName,
                 'http://twitter.com/'.fake()->userName,
                 'http://plus.google.com/'.fake()->userName,
-            ]),
-            'phone' => fake()->phoneNumber(),
 
+            ]),
         ];
     }
 

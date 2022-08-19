@@ -17,7 +17,12 @@ class UserAnswerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'exam_user_id' => fake()->numberBetween('1','10'),
+            'question_id' => fake()->numberBetween('1','10'),
+            'answer' => fake()->numberBetween('1','10'),
+            'result' => fake()->numberBetween('1','10'),
+            'point' => fake()->numberBetween('1','10'),
+
         ];
     }
 }

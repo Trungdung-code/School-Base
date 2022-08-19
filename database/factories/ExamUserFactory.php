@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Membership>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ExamUser>
  */
-class MembershipFactory extends Factory
+class ExamUserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,12 +17,13 @@ class MembershipFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->numberBetween('1', '10'),
-            'subcription_id' => fake()->numberBetween('1', '10'),
+            'user_id' => fake()->numberBetween('1','10'),
+            'exam_id' => fake()->numberBetween('1','10'),
             'start_time' => fake()->dateTime(),
             'end_time' => fake()->dateTime(),
             'duration' => fake()->text(),
-            'cost' => fake()->numberBetween('10000', '90000'),
+            'point' => fake()->numberBetween('1','100'),
+            'batch' =>fake()->numberBetween('1','10'),
 
         ];
     }
