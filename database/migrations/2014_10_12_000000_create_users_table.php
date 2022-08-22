@@ -25,6 +25,7 @@ return new class extends Migration
             $table->json('social_links')->nullable();
             $table->string('avatar_url')->nullable();
             $table->string('phone')->nullable();
+            $table->string('provider_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

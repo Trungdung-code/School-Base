@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'birthday' => fake()->dateTime(),
             'address' => fake()->address(),
             'phone' => fake()->phoneNumber(),
-            'social_links' => Arr::random([
+            'social_links' => json_encode([
                 'http://facebook.com/'.fake()->userName,
                 'http://twitter.com/'.fake()->userName,
                 'http://plus.google.com/'.fake()->userName,

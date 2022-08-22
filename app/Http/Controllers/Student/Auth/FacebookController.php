@@ -24,11 +24,11 @@ class FacebookController extends Controller
     {
         try {
             $user = Socialite::driver(static::DRIVER_TYPE)->user();
-            $saveUser = User::updateOrCreate([
+            $saveUser = User::firstOrCreate([
                 'provider_id' => $user->getId(),
+                'email' => $user->getEmail(),
             ], [
                 'name' => $user->getName(),
-                'email' => $user->getEmail(),
                 'password' => Hash::make('Sphoton123'),
                 'role' => 'student',
             ]);
@@ -50,11 +50,11 @@ class FacebookController extends Controller
     {
         try {
             $user = Socialite::driver(static::DRIVER_TYPE_GOOGLE)->user();
-            $saveUser = User::updateOrCreate([
+            $saveUser = User::firstOrCreate([
                 'provider_id' => $user->getId(),
+                'email' => $user->getEmail(),
             ], [
                 'name' => $user->getName(),
-                'email' => $user->getEmail(),
                 'password' => Hash::make('Sphoton123'),
                 'role' => 'student',
             ]);
