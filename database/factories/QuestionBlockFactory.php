@@ -17,7 +17,10 @@ class QuestionBlockFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'description' => fake()->text(),
+            'exam_id' => fake()->numberBetween('1', '10'),
+            'amount' => fake()->numberBetween('1','10'),
+
         ];
     }
 }

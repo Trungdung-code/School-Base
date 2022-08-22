@@ -17,7 +17,9 @@ class SubjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'icon_url' => 'https://source.unsplash.com/random',
+
         ];
     }
 }

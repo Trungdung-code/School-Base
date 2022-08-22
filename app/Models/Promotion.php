@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Promotion extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'code',
+        'time',
+        'limit',
+        'start_time',
+        'end-time',
+    ];
 }

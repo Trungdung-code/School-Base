@@ -17,7 +17,11 @@ class ReviseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => fake()->numberBetween('1', '10'),
+            'topic_id' => fake()->numberBetween('1', '10'),
+            'title' => fake()->text(),
+            'content' => fake()->paragraph(1),
+
         ];
     }
 }

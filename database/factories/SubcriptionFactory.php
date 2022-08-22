@@ -17,7 +17,11 @@ class SubcriptionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => fake()->paragraph(1),
+            'description' => fake()->text(),
+            'price' => fake()->numberBetween('10', '10000'),
+            'duration' => fake()->text(),
+
         ];
     }
 }

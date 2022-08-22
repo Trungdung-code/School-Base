@@ -17,7 +17,10 @@ class BookmarkFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => fake()->numberBetween('1','10'),
+            'bookmarkable_id' => fake()->numberBetween('1','10'),
+            'bookmarkable_type' => fake()->text(),
+
         ];
     }
 }
