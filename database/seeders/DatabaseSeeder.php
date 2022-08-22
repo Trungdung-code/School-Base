@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::factory()
-            ->count(2)
+            ->count(10)
             ->create();
 
         Subject::factory()
@@ -86,7 +86,6 @@ class DatabaseSeeder extends Seeder
         UserAnswer::factory()
             ->count(10)
             ->create();
-
 
         Bookmark::factory()
             ->count(10)
