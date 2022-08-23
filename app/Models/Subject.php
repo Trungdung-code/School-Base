@@ -12,4 +12,14 @@ class Subject extends Model
         'name',
         'icon_url',
     ];
+
+    public function exams()
+    {
+        return $this->morphMany(Exam::class, 'examable');
+    }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

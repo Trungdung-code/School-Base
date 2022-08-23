@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionBlock extends Model
 {
     use HasFactory;
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

@@ -47,8 +47,7 @@ class SignupController extends Controller
             'gender' => 'male',
             'birthday' => '2012/07/20',
             'address' => 'hanoi',
-            'social_links' => 'facebook',
-            'phone' => '0235689598',
+            'phone' => '0235689598'
         ]);
 
         event(new Registered($user));
