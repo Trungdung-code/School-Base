@@ -1,5 +1,6 @@
 @extends('pages.students.layout.app')
 @section('content')
+@include('pages.students.layout.nav')
           <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="border-0 card">
               <div class="card-header">

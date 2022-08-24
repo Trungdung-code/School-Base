@@ -60,7 +60,7 @@ use App\Http\Controllers\TermAndConditionsController;
 use App\Http\Controllers\PrivacypolicyController;
 use App\Http\Controllers\Notfound404Controller;
 use App\Http\Controllers\Student\Auth\FacebookController;
-use App\Http\Controllers\Student\SubjectController;
+use App\Http\Controllers\Student\ReviewController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Middleware\Admin;
@@ -138,13 +138,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
-
-    //review
-    Route::get('/review', [SubjectController::class, 'index'])->name('review');
-
-    Route::get('/all_courses', [CourseController::class, 'all_course'])->name('all_courses');
-    Route::get('/detail-course/{id}', [CourseController::class, 'detailCourse'])->name('detail-course');
     Route::get('/successful', [CourseController::class, 'successful'])->name('successful');
+    //review
+    Route::get('/review', [ReviewController::class, 'index'])->name('review');
+
+    //math
+    Route::get('/math', [MathController::class, 'index'])->name('math');
 
     //instructor
     Route::get('/profilee', [ProfileinsController::class, 'profileins'])->name('profile');

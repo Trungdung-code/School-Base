@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller as RoutingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class SubjectController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,8 +25,7 @@ class SubjectController extends Controller
         //     Log::info('sql :' . $query->sql, ['binding' => $query->bindings]);
         // });
         $subject = Subject::with('topic')->get();
-        $revises = Revise::with('topic')->paginate(10);
-        // return $topic;
+        $revises = Revise::with('topic')->paginate(9);
         return view('pages.students.review', compact('subject', 'revises'));
     }
 

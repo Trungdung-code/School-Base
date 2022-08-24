@@ -18,7 +18,13 @@
 
 <body>
     @include('pages.students.layout.menu')
-    @yield('content')
+    <div class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                @yield('content')
+            </div>
+        </div>
+    </div>
     @include('pages.students.layout.footer')
 </body>
 

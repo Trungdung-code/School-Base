@@ -50,72 +50,10 @@
                                 @foreach ($subject as $subjects)
                                     <div class="form-check my-1">
                                         <label class="form-check-label ps-1" for="flexRadioDefault1">
-                                            <a href="#"> {{ $subjects->name }} </a>
+                                            <a href=""> {{ $subjects->name }} </a>
                                         </label>
                                     </div>
                                 @endforeach
-                                <p class="navbar-header nav-item mb-2 p-0 text-dark  mt-4">CATEGORIES</p>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Illustration">
-                                    <label class="form-check-label ps-1" for="Illustration">
-                                        Illustration
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Craft" checked>
-                                    <label class="form-check-label ps-1" for="Craft">
-                                        Craft
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Marketing">
-                                    <label class="form-check-label ps-1" for="Marketing">
-                                        Marketing & Business
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Photography">
-                                    <label class="form-check-label ps-1" for="Photography">
-                                        Photography & Video
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Design">
-                                    <label class="form-check-label ps-1" for="Design">
-                                        Design
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Animation">
-                                    <label class="form-check-label ps-1" for="Animation">
-                                        3D & Animation
-                                    </label>
-                                </div>
-                                <p class="navbar-header nav-item mb-2 p-0 text-dark mt-4">SOFTWARE</p>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Wordpress">
-                                    <label class="form-check-label ps-1" for="Wordpress">
-                                        Wordpress
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="Adobe">
-                                    <label class="form-check-label ps-1" for="Adobe">
-                                        Adobe Photoshop
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="SketchUp">
-                                    <label class="form-check-label ps-1" for="SketchUp">
-                                        SketchUp
-                                    </label>
-                                </div>
-                                <div class="form-check my-1">
-                                    <input class="form-check-input" type="checkbox" value="" id="illustration">
-                                    <label class="form-check-label ps-1" for="illustration">
-                                        Adobe illustration
-                                    </label>
-                                </div>
                             </div>
                         </div>
                     </nav>
