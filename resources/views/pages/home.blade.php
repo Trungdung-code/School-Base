@@ -7,7 +7,8 @@
                     <img src="img/hero-img.png" class="img-fluid" alt="#" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="fw-bold text-white display-4 mb-3">Edutree is a community <br>for creative people.</h1>
+                    <h1 class="fw-bold text-white display-4 mb-3">Edutree is a community <br>for creative
+                        people.</h1>
                     <p class="lead text-white-50 mb-0">Learn from expert professionals and<br> join
                         the largest online community for creatives.
                     </p>
@@ -16,7 +17,8 @@
                             <div class="form-floating services-search-form-service">
                                 <input type="text" class="form-control border-0" id="sservice"
                                     placeholder="Enter Service...">
-                                <label for="sservice">What <span class="text-body">courses</span> do you need?</label>
+                                <label for="sservice">What <span class="text-body">courses</span> do you
+                                    need?</label>
                             </div>
                             <button class="btn btn-success border-0 d-flex align-items-center rounded-3 text-uppercase m-1"
                                 type="submit"><i class="icofont-search-1"></i></button>
@@ -38,46 +40,50 @@
             </div>
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                @foreach($courses as $course)
-                <div class="col">
-                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden video-card-item position-relative">
-                        <img src="img/1.jpg" class="img-fluid" alt="#" loading="lazy">
-                        <div class="card-body">
-                            <h6 class="card-title pb-3 text-black mb-0">
-                                <span class="bg-wa rning badge text-black me-2">{{ __('BEST SELLER') }}</span>
-                                {{ $course->name }}
-                            </h6>
-                            <p class="card-text mb-0">A course by Arantxa & Guille</p>
-                            <div class="card-text text-muted small">Learn to create campaigns on Google and Facebook to
-                                boost
-                                your brand or business
-                            </div>
-                            <div class="text-muted gap-2 pt-2 small d-flex">
-                                <span><i class="bi bi-person"></i> 23643</span>
-                                <span><i class="bi bi-hand-thumbs-up"></i> 80% (2.2k)</span>
-                            </div>
-                        </div>
-                        <div class="card-footer border-0 bg-white border-top p-3">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <span class="badge bg-danger text-white">SALE</span>
-                                <div class="card-price text-danger">78% Disc.
-                                    <del class="text-black">${{ $course->promotion_price }}</del>
+                @foreach ($courses as $course)
+                    <div class="col">
+                        <div
+                            class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden video-card-item position-relative">
+                            <img src="img/1.jpg" class="img-fluid" alt="#" loading="lazy">
+                            <div class="card-body">
+                                <h6 class="card-title pb-3 text-black mb-0">
+                                    <span class="bg-wa rning badge text-black me-2">{{ __('BEST SELLER') }}</span>
+                                    {{ $course->name }}
+                                </h6>
+                                <p class="card-text mb-0">A course by Arantxa & Guille</p>
+                                <div class="card-text text-muted small">Learn to create campaigns on Google and
+                                    Facebook to
+                                    boost
+                                    your brand or business
+                                </div>
+                                <div class="text-muted gap-2 pt-2 small d-flex">
+                                    <span><i class="bi bi-person"></i> 23643</span>
+                                    <span><i class="bi bi-hand-thumbs-up"></i> 80% (2.2k)</span>
                                 </div>
                             </div>
-                            <div class="d-grid">
-                                <button class="btn btn-primary">
-                                    <i class="bi bi-cart-fill"></i> ${{ $course->price }}
-                                </button>
+                            <div class="card-footer border-0 bg-white border-top p-3">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <span class="badge bg-danger text-white">SALE</span>
+                                    <div class="card-price text-danger">78% Disc.
+                                        <del class="text-black">${{ $course->promotion_price }}</del>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-primary">
+                                        <i class="bi bi-cart-fill"></i> ${{ $course->price }}
+                                    </button>
+                                </div>
                             </div>
+                            <a href="https://askbootstrap.com/preview/edutree/courses-detail.html"
+                                class="stretched-link"></a>
                         </div>
-                        <a href="https://askbootstrap.com/preview/edutree/courses-detail.html" class="stretched-link"></a>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
         <div class="text-center mt-3 pb-4">
-            <a href="https://askbootstrap.com/preview/edutree/courses.html" class="btn btn-danger">See more Edutree course
+            <a href="https://askbootstrap.com/preview/edutree/courses.html" class="btn btn-danger">See more
+                Edutree course
                 &nbsp;<i class="bi bi-arrow-right"></i></a>
         </div>
         </div>
@@ -155,8 +161,7 @@
                     <h3 class="pb-0 fw-bold text-dark mb-1">Courses By Category</h3>
                 </div>
                 <a href="https://askbootstrap.com/preview/edutree/courses.html"
-                    class="text-decoration-none text-primary ms-auto">See More <i
-                        class="bi bi-arrow-right-circle"></i></a>
+                    class="text-decoration-none text-primary ms-auto">See More <i class="bi bi-arrow-right-circle"></i></a>
             </div>
             <div class="row gy-3 row-cols-xl-4 row-cols-lg-4 row-cols-md-3 row-cols-2">
                 <div class="col">

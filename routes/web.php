@@ -63,6 +63,8 @@ use App\Http\Controllers\Student\Auth\FacebookController;
 use App\Http\Controllers\Student\ReviewController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\ReviseController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Middleware\Admin;
 
 //use App\Http\Controllers\Admin\AnswerController;
@@ -142,8 +144,11 @@ Route::group(['middleware' => 'auth'], function () {
     //review
     Route::get('/review', [ReviewController::class, 'index'])->name('review');
 
-    //math
-    Route::get('/math', [MathController::class, 'index'])->name('math');
+    //subject
+    Route::get('/subject/{id}', [SubjectController::class, 'index'])->name('subject');
+
+    // //revise
+    // Route::get('/subject/{name}', [ReviseController::class, 'index'])->name('subject');
 
     //instructor
     Route::get('/profilee', [ProfileinsController::class, 'profileins'])->name('profile');

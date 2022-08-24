@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReviseRequest;
-use App\Http\Requests\UpdateReviseRequest;
 use App\Models\Revise;
 use App\Models\Subject;
+use App\Models\Topic;
+use Illuminate\Http\Request;
 
-class ReviseController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,14 @@ class ReviseController extends Controller
      */
     public function index($id)
     {
-        $subject = Subject::with('topics')->get();
-        return view('pages.students.revise', compact('subject', ));
+        $query =  Subject::with('topics:id,name,subject_id,user_id');
+        $subjects = $query->get(['id', 'name', 'icon_url']);
+        $subject = $query->findOrFail($id);
+        $topics = $subject->topics;
+        $topicIds = $topics->pluck('id')->toArray();
+        $revises = Revise::whereIn('topic_id', $topicIds)->get();
+
+        return view('pages.students.subject', compact('subjects', 'subject', 'topics', 'revises'));
     }
 
     /**
@@ -33,10 +39,10 @@ class ReviseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReviseRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReviseRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -44,10 +50,10 @@ class ReviseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Revise  $revise
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Revise $revise)
+    public function show($id)
     {
         //
     }
@@ -55,10 +61,10 @@ class ReviseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Revise  $revise
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Revise $revise)
+    public function edit($id)
     {
         //
     }
@@ -66,11 +72,11 @@ class ReviseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReviseRequest  $request
-     * @param  \App\Models\Revise  $revise
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReviseRequest $request, Revise $revise)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +84,10 @@ class ReviseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Revise  $revise
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Revise $revise)
+    public function destroy($id)
     {
         //
     }
