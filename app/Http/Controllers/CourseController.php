@@ -19,12 +19,7 @@ class CourseController extends Controller
 
     public function all_course(Request $request)
     {
-
-        $courses = Course::available()->orderBy('updated_at', 'desc')->take(12)->get();
-        $latest_courses = Course::available()->orderBy('updated_at', 'desc')->get();
-        $type = 0;
-        return view('pages.courses.allcourses',
-            compact('courses', 'latest_courses', 'type'));
+        return view('pages.courses.allcourses');
     }
 
     public function my_courses(Request $request)

@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SchoolBase</title>
     <link href="/css/style.css" rel="stylesheet">
 
     <link href="/vendor/slick/slick/slick.css" rel="stylesheet">
@@ -17,30 +17,15 @@
 </head>
 
 <body>
-    @include('pages.layout.menu')
-    @include('pages.students.layout.my_profile')
-    <section class="py-3 border-bottom bg-white shadow-sm">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="creatives d-flex align-items-center">
-                    <a href="student-billing-info.html#" class="small text-primary">Home</a>
-                    <i class="bi bi-caret-right mx-1"></i>
-                    <a href="student-billing-info.html#" class="small">Student</a>
-                    <i class="bi bi-caret-right mx-1"></i>
-                    <a href="student-billing-info.html#" class="small">Billing Info</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('pages.students.layout.menu')
     <div class="pt-5 pb-5">
         <div class="container">
             <div class="row">
-                @include('pages.students.layout.nav')
                 @yield('content')
             </div>
         </div>
     </div>
-    @include('pages.layout.footer')
+    @include('pages.students.layout.footer')
 </body>
 
 </html>
