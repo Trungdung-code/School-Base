@@ -16,11 +16,11 @@
                     <a class="nav-link px-0 py-4" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item mx-2 dropdown">
-                    <a class="nav-link dropdown-toggle px-0 py-4" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle px-0 py-4" href="{{ route('review') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Courses
                     </a>
                     <ul class="dropdown-menu m-0 border-0 shadow-sm p-2">
-                        <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('all_courses') }}">All Courses</a></li>
+                        <li><a class="dropdown-item px-3 py-2 rounded" href="#">All Course</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="detail-course">Courses Detail</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('successful') }}">Order Successful</a></li>
                     </ul>

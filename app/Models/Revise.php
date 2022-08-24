@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Revise extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id', 'topic_id', 'title', 'content'
+    ];
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
 }

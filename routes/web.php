@@ -60,6 +60,7 @@ use App\Http\Controllers\TermAndConditionsController;
 use App\Http\Controllers\PrivacypolicyController;
 use App\Http\Controllers\Notfound404Controller;
 use App\Http\Controllers\Student\Auth\FacebookController;
+use App\Http\Controllers\Student\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Middleware\Admin;
@@ -127,7 +128,7 @@ Route::get('/google/auth', [FacebookController::class, 'loginUsingGoogle'])->nam
 Route::get('/google/callback', [FacebookController::class, 'callbackFromGoogle']);
 
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
@@ -137,6 +138,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+    //review
+    Route::get('/review', [SubjectController::class, 'index'])->name('review');
 
     Route::get('/all_courses', [CourseController::class, 'all_course'])->name('all_courses');
     Route::get('/detail-course/{id}', [CourseController::class, 'detailCourse'])->name('detail-course');

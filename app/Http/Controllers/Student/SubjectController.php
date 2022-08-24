@@ -1,10 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use App\Models\Revise;
 use App\Models\Subject;
+use App\Models\Topic;
+use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SubjectController extends Controller
 {
@@ -15,7 +21,13 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        // DB::listen(function($query){
+        //     Log::info('sql :' . $query->sql, ['binding' => $query->bindings]);
+        // });
+        $subject = Subject::with('topic')->get();
+        $revises = Revise::with('topic')->paginate(10);
+        // return $topic;
+        return view('pages.students.review', compact('subject', 'revises'));
     }
 
     /**

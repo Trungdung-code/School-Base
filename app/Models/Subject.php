@@ -12,4 +12,10 @@ class Subject extends Model
         'name',
         'icon_url',
     ];
+
+    public function topic()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
 }

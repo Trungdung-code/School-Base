@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     use HasFactory;
+
+    public function subject()
+    {
+        return $this->hasOne(Subject::class);
+    }
+
+    public function revise()
+    {
+        return $this->hasMany(Revise::class);
+    }
 }
