@@ -76,10 +76,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
 }
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-    Route::get('/callback/{provider}', 'SocialController@callback');
-});
+
 
 
 Route::get('/upgrade-db/{id}', function ($id) {
@@ -129,13 +126,12 @@ Route::get('/facebook/callback', [FacebookController::class, 'callbackFromFacebo
 Route::get('/google/auth', [FacebookController::class, 'loginUsingGoogle'])->name('googlelogin');
 Route::get('/google/callback', [FacebookController::class, 'callbackFromGoogle']);
 
-
 Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
     //    Route::auth();
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
     //    Route::get('/', 'HomeController@index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 

@@ -27,7 +27,7 @@ class HomeController extends Controller
         $activities = Activity::orderBy('created_at', 'desc')->take(2)->get();
         $upcomingContest = Contest::where('start_time', '>', Carbon::now())->orderBy('start_time')->first();
 /*        $courses = [$all_courses[0], $all_courses[1], $all_courses[2]];*/
-        return view('pages.home',compact('groups', 'courses', 'contests', 'activities', 'upcomingContest'));
+        return view('pages.dashboard',compact('groups', 'courses', 'contests', 'activities', 'upcomingContest'));
     }
 
     public function contact()
