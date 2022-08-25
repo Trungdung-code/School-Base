@@ -29,6 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto gap-2 mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
+<<<<<<< HEAD
                         <a class="nav-link px-0 py-4 active" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item mx-2">
@@ -42,6 +43,20 @@
                 <div class="d-flex gap-1 align-items-center main-header-nav-right">
                     <a href="#" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
                     <a href="#" type="button" class="btn btn-success rounded-pill">Sign up</a>
+=======
+                        <a class="nav-link px-0 py-4 active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-0 py-4" href="#">About</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-0 py-4" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-1 align-items-center main-header-nav-right">
+                    <a href="{{route('student.login')}}" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
+                    <a href="{{route('signup')}}" type="button" class="btn btn-success rounded-pill">Sign up</a>
+>>>>>>> fe8a839103309382979e4591e14342cbbd3bf89e
                 </div>
             </div>
         </div>

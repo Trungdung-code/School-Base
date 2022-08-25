@@ -66,6 +66,7 @@ use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\ReviseController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Middleware\Admin;
+use App\Models\Subject;
 
 //use App\Http\Controllers\Admin\AnswerController;
 
@@ -76,7 +77,14 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
 }
 
+<<<<<<< HEAD
 
+=======
+// Route::group(['middleware' => ['web']], function () {
+//     Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+//     Route::get('/callback/{provider}', 'SocialController@callback');
+// });
+>>>>>>> fe8a839103309382979e4591e14342cbbd3bf89e
 
 
 Route::get('/upgrade-db/{id}', function ($id) {
@@ -125,13 +133,25 @@ Route::get('/facebook/auth', [FacebookController::class, 'loginUsingFacebook'])-
 Route::get('/facebook/callback', [FacebookController::class, 'callbackFromFacebook'])->name('callback');
 Route::get('/google/auth', [FacebookController::class, 'loginUsingGoogle'])->name('googlelogin');
 Route::get('/google/callback', [FacebookController::class, 'callbackFromGoogle']);
+Route::get('/', function () {
+    return view('pages.home');
+})->name('home');
 
+<<<<<<< HEAD
 Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
     //    Route::auth();
     // Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
+=======
+Route::middleware(['checkRoleStudent:student'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/join-contest', [ContestController::class, 'join']);
+    Route::post('/upload/speaking', [MediaController::class, 'store']);
+    //    Route::auth();n
+    // Route::get('/home', [HomeController::class, 'index'])->name('home');
+>>>>>>> fe8a839103309382979e4591e14342cbbd3bf89e
     //    Route::get('/', 'HomeController@index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
@@ -212,7 +232,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/{id}/course/quizzes', [CourseController::class, 'showQuizzes'])
-        ->name('course.quizzes');
+            ->name('course.quizzes');
         Route::post('/post_comment', [CourseController::class, 'post_comment'])->name('post_comment');
         //Route::get('/lesson/{lessonID}', 'CourseController@show_lesson')->name('lesson.show');
         Route::post('/lessons/{id}/finishhomework', [LessonController::class, 'finishHomework']);
@@ -226,7 +246,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         Route::get('student/profile', [ProfileController::class, 'show'])->name('student.profile');
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
         Route::get('/profile', [ProfileController::class, 'show'])->name('student.profile.show');
         Route::post('/profile', [ProfileController::class, 'changePassword'])->name('student.profile.update');
         Route::post('/profile/avatar', [ProfileController::class, 'changeAvatar']);

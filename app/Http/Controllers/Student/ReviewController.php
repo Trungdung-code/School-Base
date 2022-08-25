@@ -24,9 +24,9 @@ class ReviewController extends Controller
         // DB::listen(function($query){
         //     Log::info('sql :' . $query->sql, ['binding' => $query->bindings]);
         // });
-        $subject = Subject::with('topics')->get();
+        $subjects = Subject::with('topics')->get();
         $revises = Revise::with('topic')->paginate(9);
-        return view('pages.students.review', compact('subject', 'revises'));
+        return view('pages.students.review', compact('subjects', 'revises'));
     }
 
     /**

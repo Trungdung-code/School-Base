@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Revise;
-use App\Models\Subject;
-use App\Models\Topic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class SubjectController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $query =  Subject::with('topics:id,name,subject_id,user_id');
-        $subjects = $query->get(['id', 'name', 'icon_url']);
-        $subject = $query->findOrFail($id);
-        $topics = $subject->topics;
-        $topicIds = $topics->pluck('id')->toArray();
-        $revises = Revise::whereIn('topic_id', $topicIds)->paginate(9);
-        
-        return view('pages.students.review', compact('subjects', 'subject', 'topics', 'revises'));
+        //
     }
 
     /**

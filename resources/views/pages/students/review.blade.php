@@ -47,10 +47,18 @@
                                     </label>
                                 </div>
                                 <p class="navbar-header nav-item mb-2 p-0 text-dark mt-4">Subject</p>
-                                @foreach ($subject as $subjects)
+                                @foreach ($subjects as $subject)
                                     <div class="form-check my-1">
                                         <label class="form-check-label ps-1" for="flexRadioDefault1">
-                                            <a href="{{ route('subject', $subjects->id) }}"> {{ $subjects->name }} </a>
+                                            <a href="{{ route('subject', $subject->id) }}"> {{ $subject->name }} </a>
+                                        </label>
+                                    </div>
+                                @endforeach
+                                <p class="navbar-header nav-item mb-2 p-0 text-dark mt-4">Topic</p>
+                                @foreach ($topics as $topic)
+                                    <div class="form-check my-1">
+                                        <label class="form-check-label ps-1" for="flexRadioDefault1">
+                                            <a href="{{ route('subject', $topic->id) }}"> {{ $topic->name }} </a>
                                         </label>
                                     </div>
                                 @endforeach

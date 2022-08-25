@@ -15,10 +15,15 @@
                     <form action="https://askbootstrap.com/preview/edutree/courses.html" class="pt-2 mb-5">
                         <div class="d-flex mt-4 bg-white rounded-3 align-items-center services-search-form overflow-hidden">
                             <div class="form-floating services-search-form-service">
+<<<<<<< HEAD
                                 <input type="text" class="form-control border-0" id="sservice"
                                     placeholder="Enter Service...">
                                 <label for="sservice">What <span class="text-body">courses</span> do you
                                     need?</label>
+=======
+                                <input type="text" class="form-control border-0" id="sservice" placeholder="Enter Service...">
+                                <label for="sservice">What <span class="text-body">courses</span> do you need?</label>
+>>>>>>> fe8a839103309382979e4591e14342cbbd3bf89e
                             </div>
                             <button class="btn btn-success border-0 d-flex align-items-center rounded-3 text-uppercase m-1"
                                 type="submit"><i class="icofont-search-1"></i></button>
