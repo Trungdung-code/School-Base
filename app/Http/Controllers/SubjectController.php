@@ -21,9 +21,9 @@ class SubjectController extends Controller
         $subject = $query->findOrFail($id);
         $topics = $subject->topics;
         $topicIds = $topics->pluck('id')->toArray();
-        $revises = Revise::whereIn('topic_id', $topicIds)->get();
-
-        return view('pages.students.subject', compact('subjects', 'subject', 'topics', 'revises'));
+        $revises = Revise::whereIn('topic_id', $topicIds)->paginate(9);
+        
+        return view('pages.students.review', compact('subjects', 'subject', 'topics', 'revises'));
     }
 
     /**

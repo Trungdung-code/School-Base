@@ -3,6 +3,7 @@
     <div class="pt-5 pb-5">
         <div class="container">
             <div class="row">
+                @include('pages.students.layout.nav')
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="border-0 mb-4 card">
                         <div class="d-lg-flex justify-content-between align-items-center card-header">

@@ -1,4 +1,4 @@
-@extends('pages.layout.app')
+@extends('pages.students.layout.app')
 @section('content')
     <header class="py-5 bg-primary">
         <div class="container px-4">

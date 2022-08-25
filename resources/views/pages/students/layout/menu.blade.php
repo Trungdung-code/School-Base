@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0 main-header-nav" id="nav-bar">
     <div class="container">
-        <a href="index.html" class="brand d-flex align-items-center mb-0 text-decoration-none me-4 fw-bold h4 text-white">
+        <a href="{{ route('dashboard') }}" class="brand d-flex align-items-center mb-0 text-decoration-none me-4 fw-bold h4 text-white">
             <img src="/img/logo.png" alt="" class="img-fluid d-inline-block align-text-center me-2 rounded-pill border shadow" alt="Edutree" />
             Edutree
         </a>
@@ -10,20 +10,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto gap-2 mb-2 mb-lg-0">
                 <li class="nav-item mx-2">
-                    <a class="nav-link px-0 py-4 active" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link px-0 py-4 active" href="{{ route('dashboard') }}">Home</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link px-0 py-4" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item mx-2 dropdown">
-                    <a class="nav-link dropdown-toggle px-0 py-4" href="{{ route('review') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Courses
+                    <a class="nav-link px-0 py-4 {{--nav-link dropdown-toggle px-0 py-4--}}" href="{{ route('review') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Revise
                     </a>
-                    <ul class="dropdown-menu m-0 border-0 shadow-sm p-2">
+                    {{-- <ul class="dropdown-menu m-0 border-0 shadow-sm p-2">
                         <li><a class="dropdown-item px-3 py-2 rounded" href="#">All Course</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="detail-course">Courses Detail</a></li>
                         <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('successful') }}">Order Successful</a></li>
-                    </ul>
+                    </ul> --}}
                 </li>
                 <li class="nav-item mx-2 dropdown">
                     <a class="nav-link dropdown-toggle px-0 py-4" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,11 +73,23 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link px-0 py-4" href="{{ route('contact') }}">Contact</a>
                 </li>
+
             </ul>
+
+
             <div class="d-flex gap-1 align-items-center main-header-nav-right">
-                <a href="#" class="btn text-decoration-none text-white rounded-pill border-0">Log In</a>
-                <a href="#" type="button" class="btn btn-success rounded-pill">Sign up</a>
-                <a href="{{ route('student.logout') }}" class="btn text-decoration-none text-white rounded-pill border-0">Log Out</a>
+                <ul class="navbar-nav mx-auto gap-2 mb-2 mb-lg-0">
+                    <li class="nav-item mx-2 dropdown">
+                        <a class="nav-link dropdown-toggle px-0 py-4" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu m-0 border-0 shadow-sm p-2">
+                            <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('security') }}">Profile</a></li>
+                            <li><a class="dropdown-item px-3 py-2 rounded" href="{{ route('student.logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {{-- <a href="{{ route('student.logout') }}" class="nav-link dropdown-toggle px-0 py-4">Log Out</a> --}}
             </div>
         </div>
     </div>

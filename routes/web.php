@@ -66,6 +66,7 @@ use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\ReviseController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Middleware\Admin;
+use App\Models\Subject;
 
 //use App\Http\Controllers\Admin\AnswerController;
 
@@ -132,11 +133,11 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::group(['middleware' => 'auth', 'prefix' => 'student'], function () {
-
+Route::middleware(['checkRoleStudent:student'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/join-contest', [ContestController::class, 'join']);
     Route::post('/upload/speaking', [MediaController::class, 'store']);
-    //    Route::auth();
+    //    Route::auth();n
     // Route::get('/home', [HomeController::class, 'index'])->name('home');
     //    Route::get('/', 'HomeController@index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -232,7 +233,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'student'], function () {
 
 
         Route::get('student/profile', [ProfileController::class, 'show'])->name('student.profile');
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
         Route::get('/profile', [ProfileController::class, 'show'])->name('student.profile.show');
         Route::post('/profile', [ProfileController::class, 'changePassword'])->name('student.profile.update');
         Route::post('/profile/avatar', [ProfileController::class, 'changeAvatar']);
